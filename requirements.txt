@@ -14,9 +14,9 @@ uvicorn==0.18.3
 uvloop==0.16.0
 watchfiles==0.16.1
 websockets==10.3
-tensorflow==2.5
+tensorflow
 python-multipart
 pillow
-tensorflow-serving-api==2.5
+tensorflow-serving-api
 matplotlib
 numpy
