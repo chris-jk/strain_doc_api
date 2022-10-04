@@ -49,7 +49,7 @@ for _, dirnames, filenames in os.walk(path):
 model_folder = path+str(int(folders/3))+"/"
 
 # '../model_img_gen.h5' 'strain_doc_model.h5'
-model = "../strain_doc_model.h5"
+model = "./strain_doc_model.h5"
 # load model
 MODEL = tf.keras.models.load_model(model)
 print("\n model loaded from folder: ",model,"\n")
