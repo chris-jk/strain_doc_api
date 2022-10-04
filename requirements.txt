@@ -20,3 +20,4 @@ pillow
 tensorflow-serving-api
 matplotlib
 numpy
+opencv-python
