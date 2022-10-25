@@ -1,8 +1,8 @@
 {
   "builds": [
-    {"src": "main.py", "use": "@now/python"}
+    {"src": "/strain_doc_api/main.py", "use": "@now/python"}
   ],
   "routes": [
-    {"src": "/(.*)", "dest": "main.py"}
+    {"src": "/(.*)", "dest": "/strain_doc_api/main.py"}
   ]
 }
