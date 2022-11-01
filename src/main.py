@@ -35,7 +35,7 @@ app.add_middleware(
 
 # https://youtu.be/t6NI0u_lgNo?t=1670 for tf serving
 
-# return the count for only the first folder 
+# return the count for only the first folder for model folder
 
 path = '../saved_models/'
 
@@ -50,7 +50,7 @@ for _, dirnames, filenames in os.walk(path):
 model_folder = path+str(int(folders/3))+"/"
 
 # '../model_img_gen.h5' 'strain_doc_model.h5'
-model = "./strain_doc_model.h5"
+model = "./src/strain_doc_model.h5"
 # load model
 MODEL = tf.keras.models.load_model(model)
 print("\n model loaded from folder: ",model,"\n")
@@ -90,8 +90,25 @@ async def predict(
     # get top 3 % in array
     sorted_predictions = sorted(zip(predictions[0]), reverse=True)[:3]
 
+    # print top 3 % in array
+    
     # predict class name
     predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
+    
+    predicted_class2 = CLASS_NAMES[np.argmax(sorted_predictions[1])]
+    confidence2 = sorted_predictions[1][0]
+    
+    predicted_class3 = CLASS_NAMES[np.argmax(sorted_predictions[2])]
+    confidence3 = sorted_predictions[2][0]
+    
+    # print top 3 predictions and confidences
+    print("predicted class: ",predicted_class)
+    print("predicted class2: ",predicted_class2)
+    print("confidence2: ",confidence2)
+    print("predicted class3: ",predicted_class3)
+    print("confidence3: ",confidence3)
+    
+    
     # show confidence in prediction
     confidence = np.max(predictions[0])
     
@@ -100,7 +117,12 @@ async def predict(
     # return class name and confidence to client
     return {
         'class': predicted_class,
-        'confidence': float(confidence)
+        'confidence': float(confidence),
+        'class2': predicted_class2, 
+        'confidence2': float(confidence2),
+        'class3': predicted_class3,
+        'confidence3': float(confidence3)
+            
     }
 
 # run server on port 8000 when file is run directly
